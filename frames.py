@@ -207,7 +207,6 @@ class VigenereFrame(Frame):
         self.input_frame.pack(fill=BOTH, padx=5, pady=5)
         self.label_title = Label(self.input_frame, text="Вижинер", font = ("Arial", 14))
         self.label_title.pack(anchor="nw")
-
         self.label_input_title = Label(self.input_frame, text="Входные данные:")
         self.label_input_title.pack(anchor="nw")
         self.label_message = Label(self.input_frame, text="Текст:")
@@ -218,7 +217,7 @@ class VigenereFrame(Frame):
         self.label_keyword.pack(anchor="nw")
         self.input_keyword = Entry(self.input_frame)
         self.input_keyword.pack(anchor="nw", fill='x')
-        self.encrypt_btn = ttk.Button(self, text="Зашифровать (латинские символы без пробелов)")
+        self.encrypt_btn = ttk.Button(self, text="Зашифровать (допустимы пробелы)")
         self.encrypt_btn["command"] = self.encrypt
         self.encrypt_btn.pack(anchor='nw', padx=5, pady=5)
         self.decrypt_btn = ttk.Button(self, text="Расшифровать")

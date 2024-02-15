@@ -19,10 +19,13 @@ class Vigenere:
         encrypted_message = []
         if action == 'encrypt' or action == 'decrypt':
             for i in range(len(message)):
-                m = self.alph.index(message[i])
-                k = self.alph.index(key[i])
-                c = m + k if action == 'encrypt' else m - k
-                encrypted_message.append(self.alph[c % len(self.alph)])
+                if message[i] == ' ':
+                    encrypted_message.append(message[i])
+                else:
+                    m = self.alph.index(message[i])
+                    k = self.alph.index(key[i])
+                    c = m + k if action == 'encrypt' else m - k
+                    encrypted_message.append(self.alph[c % len(self.alph)])
             return "".join(encrypted_message)
         else:
             return "Wrong 'action'"
