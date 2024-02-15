@@ -47,8 +47,8 @@ class MyEncrypt:
 
 
 class HttpMyEncrypt(MyEncrypt):
-    def __init__(self, url, image):
+    def __init__(self, url):
+        image = Image.open(requests.get(url, stream=True).raw)
         super().__init__(image)
-        self.image = Image.open(requests.get(url, stream=True).raw)
 
 
