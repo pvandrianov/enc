@@ -26,6 +26,3 @@ class Vigenere:
             return "".join(encrypted_message)
         else:
             return "Wrong 'action'"
-
-
-
