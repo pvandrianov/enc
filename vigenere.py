@@ -25,7 +25,7 @@ class Vigenere:
                 encrypted_message.append(self.alph[c % len(self.alph)])
             return "".join(encrypted_message)
         else:
-            print("Wrong 'action'")
+            return "Wrong 'action'"
 
 
 
