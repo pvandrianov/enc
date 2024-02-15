@@ -7,7 +7,7 @@ class MainWindow(Tk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title('Шифрование')
-        self.geometry('700x700')
+        self.geometry('700x730')
         self.resizable(False, False)
         self.notebook = ttk.Notebook()
         self.notebook.pack(expand=True, fill=BOTH, padx=5, pady=5)

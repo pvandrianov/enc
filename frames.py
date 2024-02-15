@@ -6,6 +6,7 @@ from tkinter.messagebox import showerror
 from encryption import MyEncrypt
 from cesar import cesar
 from polybius import Polibius
+from vigenere import Vigenere
 
 
 class CanvasFrame(Frame):
@@ -199,6 +200,59 @@ class PolibiusFrame(Frame):
         self.output_text.insert(0, e.decrypt(text))
 
 
+class VigenereFrame(Frame):
+    def __init__(self,  *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.input_frame = Frame(self)
+        self.input_frame.pack(fill=BOTH, padx=5, pady=5)
+        self.label_title = Label(self.input_frame, text="Вижинер", font = ("Arial", 14))
+        self.label_title.pack(anchor="nw")
+
+        self.label_input_title = Label(self.input_frame, text="Входные данные:")
+        self.label_input_title.pack(anchor="nw")
+        self.label_message = Label(self.input_frame, text="Текст:")
+        self.label_message.pack(anchor="nw")
+        self.input_message = Entry(self.input_frame)
+        self.input_message.pack(anchor="nw", fill='x')
+        self.label_keyword = Label(self.input_frame, text="Ключевое слово")
+        self.label_keyword.pack(anchor="nw")
+        self.input_keyword = Entry(self.input_frame)
+        self.input_keyword.pack(anchor="nw", fill='x')
+        self.encrypt_btn = ttk.Button(self, text="Зашифровать (латинские символы без пробелов)")
+        self.encrypt_btn["command"] = self.encrypt
+        self.encrypt_btn.pack(anchor='nw', padx=5, pady=5)
+        self.decrypt_btn = ttk.Button(self, text="Расшифровать")
+        self.decrypt_btn["command"] = self.decrypt
+        self.decrypt_btn.pack(anchor='nw', padx=5, pady=5)
+        self.label_output_text = Label(self.input_frame, text="Выходные данные:")
+        self.label_output_text.pack(anchor="nw")
+        self.output_text = Entry(self.input_frame)
+        self.output_text.pack(anchor="nw", fill='x')
+
+    def encrypt(self):
+        e = Vigenere()
+        message = self.input_message.get().upper()
+        self.input_message.delete(0, END)
+        self.input_message.insert(0, message)
+        keyword = self.input_keyword.get().upper()
+        self.input_keyword.delete(0, END)
+        self.input_keyword.insert(0, keyword)
+
+        self.output_text.delete(0, END)
+        self.output_text.insert(0, e.crypt(message=message, keyword=keyword, action='encrypt'))
+
+    def decrypt(self):
+        e = Vigenere()
+        message = self.input_message.get().upper()
+        self.input_message.delete(0, END)
+        self.input_message.insert(0, message)
+        keyword = self.input_keyword.get().upper()
+        self.input_keyword.delete(0, END)
+        self.input_keyword.insert(0, keyword)
+
+        self.output_text.delete(0, END)
+        self.output_text.insert(0, e.crypt(message=message, keyword=keyword, action='decrypt'))
+
 
 class AnotherFrame(Frame):
     def __init__(self,  *args, **kwargs):
@@ -206,4 +260,6 @@ class AnotherFrame(Frame):
         self.cesar_frame = CesarFrame(self, borderwidth=1, relief=SOLID)
         self.cesar_frame.pack(fill=BOTH, padx=5, pady=5)
         self.polib_frame = PolibiusFrame(self, borderwidth=1, relief=SOLID)
+        self.polib_frame.pack(fill=BOTH, padx=5, pady=5)
+        self.polib_frame = VigenereFrame(self, borderwidth=1, relief=SOLID)
         self.polib_frame.pack(fill=BOTH, padx=5, pady=5)
