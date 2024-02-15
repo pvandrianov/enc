@@ -205,7 +205,7 @@ class VigenereFrame(Frame):
         super().__init__(*args, **kwargs)
         self.input_frame = Frame(self)
         self.input_frame.pack(fill=BOTH, padx=5, pady=5)
-        self.label_title = Label(self.input_frame, text="Вижинер", font = ("Arial", 14))
+        self.label_title = Label(self.input_frame, text="Виженер", font=("Arial", 14))
         self.label_title.pack(anchor="nw")
         self.label_input_title = Label(self.input_frame, text="Входные данные:")
         self.label_input_title.pack(anchor="nw")
