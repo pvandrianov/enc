@@ -48,7 +48,10 @@ class MyEncrypt:
 
 class HttpMyEncrypt(MyEncrypt):
     def __init__(self, url):
-        image = Image.open(requests.get(url, stream=True).raw)
-        super().__init__(image)
+        try:
+            image = Image.open(requests.get(url, stream=True).raw)
+            super().__init__(image)
+        except:
+            print("Не получилось импортировать изображение по URL")
 
 
